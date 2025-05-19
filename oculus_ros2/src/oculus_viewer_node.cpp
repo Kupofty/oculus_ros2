@@ -44,7 +44,6 @@ OculusViewerNode::OculusViewerNode() : Node("oculus_viewer"), sonar_viewer_(stat
 OculusViewerNode::~OculusViewerNode() {}
 
 void OculusViewerNode::pingCallback(const oculus_interfaces::msg::Ping& ping_msg) const {
-  // RCLCPP_INFO(get_logger(), "I am in callback");
   sonar_viewer_.publishFan(ping_msg);
 }
 

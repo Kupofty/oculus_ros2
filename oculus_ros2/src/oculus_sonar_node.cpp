@@ -57,8 +57,6 @@ OculusSonarNode::OculusSonarNode()
 
   while (!this->sonar_driver_->connected())  // Blocking while waiting the connected with the sonar.
   {
-    // std::cerr << "Timeout reached while waiting for a connection to the Oculus sonar. "
-    //           << "Is it properly connected ?" << std::endl;
     const int sleepWhileConnecting = 1000;
     std::this_thread::sleep_for(std::chrono::milliseconds(sleepWhileConnecting));
   }
@@ -170,13 +168,6 @@ void OculusSonarNode::checkMinimalFlags(const uint8_t& flags) const {
 }
 
 void OculusSonarNode::publishStatus(const OculusStatusMsg& status) {
-  if (status.partNumber != OculusPartNumberType::partNumberM1200d) {
-    RCLCPP_ERROR_STREAM(get_logger(),
-        "The sonar version seems to be different than M1200d."
-        " This driver is not suppose to work with your sonar.");
-  }
-
-  // TODO(hugoyvrn, update ros param ?)
 
   static oculus_interfaces::msg::OculusStatus msg;
   oculus::toMsg(msg, status);
@@ -364,7 +355,7 @@ void OculusSonarNode::updateLocalParameters(SonarParameters& parameters, SonarDr
 void OculusSonarNode::sendParamToSonar(rclcpp::Parameter param, rcl_interfaces::msg::SetParametersResult result) {
   SonarDriver::PingConfig newConfig = currentConfig_;  // To avoid to create a new SonarDriver::PingConfig from ros parameters
   if (param.get_name() == params::FREQUENCY_MODE.name) {
-    RCLCPP_INFO_STREAM(this->get_logger(), "Updating frequency_mode to " << param.as_int() << " (1: 1.2MHz, 2: 2.1MHz).");
+    RCLCPP_INFO_STREAM(this->get_logger(), "Updating frequency_mode to " << param.as_int() << " (1: LowFreq, 2: HighFreq).");
     newConfig.masterMode = param.as_int();
   } else if (param.get_name() == params::PING_RATE.name) {
     RCLCPP_INFO_STREAM(this->get_logger(), "Updating ping_rate to " << param.as_int() << " (" + params::PING_RATE.desc + ").");
