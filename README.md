@@ -21,13 +21,17 @@ This ROS2 metapackage was developed and tested using:
 ### Installation (with internet connection)
 
 **The oculus_ros2 node is merely a wrapper and depends on an external
-oculus_driver library which does most of the work. This library will be
-automatically downloaded during the colcon build process. If you don't have an
+oculus_driver library which does most of the work. If you don't have an
 internet connection available, see the instruction further below.**
 
 Create or go to your colcon workspace into the *src* folder:
 ```
 cd <your colcon workspace>/src
+```
+
+Clone the oculus_driver repository:
+```
+git clone https://github.com/ENSTABretagneRobotics/oculus_driver.git
 ```
 
 Clone the metapackage repository:
