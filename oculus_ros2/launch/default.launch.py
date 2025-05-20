@@ -58,6 +58,22 @@ def generate_launch_description():
         output="screen",
     )
 
-    ld.add_action(oculus_sonar_node)
+    rqt_gui_node = Node(
+        package="rqt_gui",
+        executable="rqt_gui",
+        name="rqt_gui",
+        output="screen"
+    )
 
+    rqt_reconfigure_node = Node(
+        package="rqt_reconfigure",
+        executable="rqt_reconfigure",
+        name="rqt_reconfigure",
+        output="screen"
+    )
+    
+    ld.add_action(oculus_sonar_node)
+    ld.add_action(rqt_gui_node)
+    ld.add_action(rqt_reconfigure_node)
+    
     return ld

@@ -25,7 +25,7 @@
 
     gain_assist: False # Enable gain assist. Default value is True.
 
-    range: 2.0 # Sonar range (in meters), min=0.3, max=120.0 (for M750d).  Default value is 20.0.
+    range: 2.0 # Sonar range (in meters) / [min=0.1, max=120.0/40.0 for M750d] / [min=0.1, max=40.0/10.0 for M1200d] / [min=0.1, max=30.0/5.0 for M3000d] / Default value is 20.0.
 
     # These parameters are for scaling data (investigate)
     gamma_correction: 153 # Gamma correction, min=0, max=255.  Default value is 153 (60%).
