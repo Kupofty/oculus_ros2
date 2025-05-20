@@ -103,20 +103,22 @@ struct IntParam {
   const std::string desc;
 };
 
-const IntParam FREQUENCY_MODE = {"frequency_mode", 1, 2, 2,
+const IntParam FREQUENCY_MODE = {"frequency_mode", 1, 2, 1,
     "Sonar beam frequency mode.\n"
     "\t1: Low frequency (1.2MHz, wide aperture).\n"
     "\t2: High frequency (2.1Mhz, narrow aperture)."};
 
-const IntParam PING_RATE = {"ping_rate", 0, 5, 2,
+const IntParam PING_RATE = {"ping_rate", 0, 5, 1,
     "Frequency of ping fires.\n\t" + std::to_string(pingRateNormal) + ": 10Hz max ping rate.\n\t" + std::to_string(pingRateHigh) +
         ": 15Hz max ping rate.\n\t" + std::to_string(pingRateHighest) + ": 40Hz max ping rate.\n\t" +
         std::to_string(pingRateLow) + ": 5Hz max ping rate.\n\t" + std::to_string(pingRateLowest) + ": 2Hz max ping rate.\n\t" +
         std::to_string(pingRateStandby) + ": Standby mode (no ping fire)"};
+
 const IntParam NBEAMS = {"nbeams", 0, 1, 1,
     "Number of ping beams.\n"
     "\t0: Oculus outputs 256 beams.\n"
     "\t1: Oculus outputs 512 beams."};
+
 const IntParam GAMMA_CORRECTION = {"gamma_correction", 1, 255, 153, "Gamma correction, min=1, max=255."};
 
 const std::vector<IntParam> INT = {FREQUENCY_MODE, PING_RATE, NBEAMS, GAMMA_CORRECTION};
@@ -130,7 +132,7 @@ struct DoubleParam {
   const std::string desc;
 };
 
-const DoubleParam RANGE = {"range", .3, 40., .1, 20., "Sonar range (in meters), min=0.3, max=40.0."};
+const DoubleParam RANGE = {"range", .1, 120., .1, 5., "Sonar range (in meters), min=0.1, max=120.0."};
 const DoubleParam GAIN_PERCENT = {"gain_percent", .1, 100., .1, 50., "Gain percentage (%), min=0.1, max=100.0."};
 const DoubleParam SOUND_SPEED = {"sound_speed", 1400., 1600., .1, 1500.,
     "Sound speed (in m/s, set to 0 for it to be calculated using salinity), min=1400.0, max=1600.0."};
